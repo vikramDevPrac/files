@@ -1,0 +1,20 @@
+kind: ReplicaSet
+apiVersion: apps/v1
+metadata:
+ name: myapp
+ namespace: default
+ #labels: # are optional
+spec:
+ replicas: 4 # number of pods to be created # if we do not mentioned the replicas value it will create 1 by default
+ template: ## which pods to be created
+  metadata:
+   #name: # kube will generate a random unique name for each pod automatically
+   labels:
+    app: myapp
+  spec: # what is inside pod
+   containers:
+    - name: cont1
+      image: lerndevops/samples:pyapp-v1
+selector: # are manadtory # helps the replicaset object to identify the pods it created
+ matchLabels:
+  app: myapp
