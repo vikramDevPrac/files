@@ -1,0 +1,20 @@
+apiVersion: v1
+data:
+  mapRoles: |
+    - groups:
+      - system:bootstrappers
+      - system:nodes
+      rolearn: arn:aws:iam::884007744260:role/eks-worker-node-policy
+      username: system:node:{{EC2PrivateDNSName}}
+  mapUsers: |
+    - username: vikram-eks-admin
+      userarn: arn:aws:iam::884007744260:user/vikram-eks-admin
+      groups:
+       - system:masters
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2023-02-08T05:17:48Z"
+  name: aws-auth
+  namespace: kube-system
+  resourceVersion: "3466"
+  uid: 1830b44a-eb67-45e9-99a6-a7f70f7b2db2
